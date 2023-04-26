@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(ted VERSION 0.1.0)
+
+option(BUILD_TEDC   "Build Ted Compiler"              ON)
+option(BUILD_TEDOC  "Build Ted Doc (Story Generator)" ON)
+option(BUILD_TEDIFY "Build Tedify Tool"               ON)
+option(TED_TESTS    "Apply Ted Tests"                 ON)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+
+if (UNIX)
+    set(USE_THREADS TRUE BOOL "Use Threads in Unix")
+else()
+    set(USE_THREADS FALSE BOOL "Do not use Threads in Windows")
+endif()
+
+if (USE_THREADS)
+    set(THREADS_PREFER_PTHREAD_FLAG ON)
+    find_package(Threads REQUIRED)
+endif()
+
+if (TED_TESTS)
+    enable_testing()
+endif()
+
+if (BUILD_TEDC)
+    add_subdirectory(ted)
+endif()
+if (BUILD_TEDIFY)
+    add_subdirectory(tedify)
+endif()
+if (BUILD_TEDOC)
+    add_subdirectory(tedoc)
+endif()

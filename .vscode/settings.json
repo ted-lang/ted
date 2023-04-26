@@ -1,0 +1,12 @@
+{
+    "doxdocgen.file.versionTag": "@version 0.1.0",
+    "doxdocgen.generic.authorEmail": "me@wqzhao.org",
+    "doxdocgen.generic.authorName": "Wuqiong Zhao",
+    "editor.rulers": [
+        120
+    ],
+    "cSpell.words": [
+        "Tedify",
+        "Tedoc"
+    ]
+}

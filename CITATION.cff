@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you find Ted useful, please consider citing it as below."
+authors:
+- family-names: "Zhao"
+  given-names: "Wuqiong"
+  orcid: "https://orcid.org/0000-0002-9550-7423"
+title: "Ted Programming Language"
+version: 0.1.0
+date-released: 2023-04-26
+url: "https://ted-lang.org"

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+clang-format -i ted/src/*.cpp
+
+echo "Finished formatting the Ted project!"

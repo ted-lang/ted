@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# macOS
+.DS_Store
+
+# Dictionaty
+ltex.dictionary.*
+
+# This Project
+build
+bin
