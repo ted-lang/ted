@@ -8,6 +8,11 @@ Ted is a general purpose programming language with simple syntax but rich featur
 > **Note**
 > Our website [ted-lang.org](https://ted-lang.org) is being build.
 
+## Components
+- [Ted](ted): Ted compiler
+- [Tedify](tedify): Change all instances of `@teddy` not inside comments into `🧸`
+- [Tedoc](tedoc): Generate the story (description) of the Ted code
+
 ## Examples
 ### Hello World
 ```c
