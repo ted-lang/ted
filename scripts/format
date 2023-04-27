@@ -1,5 +1,8 @@
 #!/bin/sh
 
+clang-format -i include/*.hpp
 clang-format -i ted/src/*.cpp
+clang-format -i tedify/include/*.hpp
+clang-format -i tedify/src/*.cpp
 
 echo "Finished formatting the Ted project!"

@@ -40,3 +40,4 @@ ltex.dictionary.*
 # This Project
 build
 bin
+*.ted.test
