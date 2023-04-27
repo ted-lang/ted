@@ -12,6 +12,7 @@ Ted is a general purpose programming language with simple syntax but rich featur
 - [Ted](ted): Ted compiler
 - [Tedify](tedify): Change all instances of `@teddy` not inside comments into `🧸`
 - [Tedoc](tedoc): Generate the story (description) of the Ted code
+- [Tedit](https://github.com/ted-lang/tedit): Ted IDE (*external project*)
 
 ## Examples
 ### Hello World
