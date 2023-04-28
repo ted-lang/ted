@@ -16,6 +16,11 @@ description: Ted Programming Language Documentations
 baseurl: "/"
 url: "https://docs.ted-lang.org" # the base hostname & protocol for your site, e.g. http://example.com
 
+# Aux links for the upper right navigation
+aux_links:
+  "Ted on GitHub":
+    - "//github.com/ted-lang"
+
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: true
 
