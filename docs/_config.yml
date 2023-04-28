@@ -1,5 +1,4 @@
 theme: just-the-docs
-github: [metadata]
 
 markdown: kramdown
 kramdown:
@@ -7,9 +6,6 @@ kramdown:
   syntax_highlighter: rouge
 
 safe: false
-
-plugins:
-  - "jekyll-github-metadata"
 
 title: Ted Lang Docs
 description: Ted Programming Language Documentations
@@ -87,6 +83,10 @@ callouts:
   attention:
     title: Attention
     color: purple
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-github-metadata
 
 exclude:
   - Gemfile
