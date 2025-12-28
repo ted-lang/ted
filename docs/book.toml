@@ -1,0 +1,14 @@
+[book]
+title = "The Ted Language"
+authors = ["Wuqiong Zhao"]
+language = "en"
+description = "A timing-explicit language for hardware simulation"
+
+[build]
+build-dir = "book"
+
+[output.html]
+git-repository-url = "https://github.com/ted-lang/ted"
+default-theme = "rust"
+preferred-dark-theme = "coal"
+cname = "docs.ted-lang.org"

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Live-build and serve the documentation
+# Usage: ./scripts/docs-serve [port]
+
+set -e
+
+PORT="${1:-3000}"
+DOCS_DIR="$(dirname "$0")/../docs"
+
+echo "Serving docs at http://localhost:$PORT"
+echo "Press Ctrl+C to stop"
+
+mdbook serve "$DOCS_DIR" --port "$PORT" --open

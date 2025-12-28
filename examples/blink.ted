@@ -1,0 +1,10 @@
+// Blink - Toggle an LED using time literals
+
+mod blink {
+    out led: bit,
+
+    // Toggle the LED every 500ms
+    loop {
+        led = !led @ +500ms;
+    }
+}

@@ -1,0 +1,9 @@
+[package]
+name = "ted-diagnostics"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Error reporting for Ted compiler"
+
+[dependencies]
+ted-ir.workspace = true

@@ -1,0 +1,16 @@
+[package]
+name = "ted-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Command-line interface for Ted compiler"
+
+[[bin]]
+name = "ted"
+path = "src/main.rs"
+
+[dependencies]
+ted-parser.workspace = true
+ted-ir.workspace = true
+ted-diagnostics.workspace = true
+clap.workspace = true

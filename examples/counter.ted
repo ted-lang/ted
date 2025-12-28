@@ -1,0 +1,15 @@
+// Counter - Classic 8-bit counter with reset
+
+mod counter {
+    in  clk: bit,
+    in  reset: bit,
+    out count: u8,
+
+    on rising(clk) {
+        if reset {
+            count = 0;
+        } else {
+            count = count + 1;
+        }
+    }
+}

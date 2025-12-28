@@ -1,0 +1,10 @@
+[package]
+name = "ted-lexer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Lexer/tokenizer for Ted language"
+
+[dependencies]
+ted-ir.workspace = true
+ted-diagnostics.workspace = true

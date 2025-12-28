@@ -1,43 +1,21 @@
-# Prerequisites
-*.d
+# Rust
+/target/
+Cargo.lock
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 
 # macOS
 .DS_Store
 
-# Dictionaty
-ltex.dictionary.*
+# mdbook output
+/docs/book/
 
-# This Project
-build
-bin
-*.ted.test
+# Ted artifacts
+*.tedbc
+
+# Editor backups
+*~

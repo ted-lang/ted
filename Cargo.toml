@@ -1,0 +1,16 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0"
+authors = ["Ted Contributors"]
+
+[workspace.dependencies]
+ted-ir = { path = "crates/ted-ir" }
+ted-diagnostics = { path = "crates/ted-diagnostics" }
+ted-lexer = { path = "crates/ted-lexer" }
+ted-parser = { path = "crates/ted-parser" }
+clap = { version = "4", features = ["derive"] }

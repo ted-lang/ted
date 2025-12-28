@@ -1,0 +1,7 @@
+// Hello World - The simplest Ted program
+
+mod hello {
+    out value: u8,
+
+    value = 42;
+}
