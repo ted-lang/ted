@@ -1,0 +1,27 @@
+[package]
+name = "ted-codegen"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Code generation backends for the Ted compiler"
+
+[features]
+default = ["cranelift"]
+cranelift = [
+  "cranelift-codegen",
+  "cranelift-frontend",
+  "cranelift-module",
+  "cranelift-native",
+  "cranelift-object",
+  "target-lexicon",
+]
+
+[dependencies]
+ted-parser.workspace = true
+
+cranelift-codegen = { version = "0.109", optional = true }
+cranelift-frontend = { version = "0.109", optional = true }
+cranelift-module = { version = "0.109", optional = true }
+cranelift-native = { version = "0.109", optional = true }
+cranelift-object = { version = "0.109", optional = true }
+target-lexicon = { version = "0.12", optional = true }

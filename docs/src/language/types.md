@@ -11,6 +11,8 @@ Ted distinguishes ordinary values from temporal values. Only temporal values kee
 
 Temporal values keep bounded history so the compiler can allocate compact ring buffers and avoid unbounded storage.
 
+> TODO: Define explicit temporal storage syntax (for example, `signal` or `temporal`) and history bounds.
+
 ## Primitive Types
 
 ### Bit
@@ -161,3 +163,11 @@ false       // same as 0 for bit
 100ms       // milliseconds
 1s          // seconds
 ```
+
+### String Literals
+
+```ted
+"Hello from Ted!"
+```
+
+> TODO: Strings are prototype-only today and will be specified with the core standard library.

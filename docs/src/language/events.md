@@ -13,7 +13,9 @@ on <event> {
 ```
 
 `on` introduces a timed context, so `@` and event waits are legal inside the handler.
-Handlers run at the current logical time; use `@ +delta` to advance time when needed.
+Handlers run at the current logical time; schedule assignments with `@ +delta` to advance time when needed.
+
+> TODO: Add a standalone delay statement (`@ +delta;`) for timed code that needs to advance time without assigning.
 
 ## Event Types
 
@@ -51,6 +53,8 @@ on change(data) {
 ```
 
 Timed events are not limited to hardware signals. The standard library will add event sources like timeouts, intervals, and channels so the same model applies to software and simulations.
+
+> TODO: Define the standard event source APIs (timeouts, intervals, channels) and their ordering rules.
 
 ## Multiple Events
 

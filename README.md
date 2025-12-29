@@ -9,7 +9,7 @@ mod blink {
     out led: bit,
 
     loop {
-        led = !led @ +500ms;  // equivalent to: @ +500ms; led = !led;
+        led = !led @ +500ms;  // schedule the next toggle 500ms later
     }
 }
 ```
@@ -21,7 +21,7 @@ mod blink {
 
 ## Features
 
-- **Explicit time** - `@ +delta` advances a task's logical time; `x @ -delta` reads history for temporal values
+- **Explicit time** - Scheduled updates `x = v @ +delta` and history reads `x @ -delta` for temporal values
 - **Deterministic concurrency** - Same input, same schedule, designed for reproducible runs and replayable debugging
 - **Hardware as a library** - Ports, edge events, and waveforms are conventions built on the timed core
 - **Rust-like** - Familiar syntax for systems programmers
@@ -35,9 +35,15 @@ cargo build --workspace
 # Check a source file
 cargo run -p ted-cli -- check examples/blink.ted
 
+# Compile to a native executable (prototype backend)
+cargo run -p ted-cli -- compile examples/hello.ted --emit exe -o ./hello
+./hello
+
 # Run tests
 cargo test --workspace
 ```
+
+Note: the prototype backend currently only supports literal `print(...)` calls.
 
 ## Documentation
 
@@ -57,6 +63,7 @@ crates/
 ├── ted-diagnostics # Error reporting
 ├── ted-lexer       # Tokenization
 ├── ted-parser      # AST and parsing
+├── ted-codegen     # Code generation backends
 └── ted-cli         # Command-line interface
 docs/               # Language documentation (mdbook)
 examples/           # Example Ted programs

@@ -69,6 +69,8 @@ mod counter {
 
 `on` handlers and module-level `loop` blocks are timed contexts. `@` is only legal inside them; helper code outside remains ordinary core Ted.
 
+> TODO: Add explicit timed task declarations and `timed fn` for timed code outside modules.
+
 ## Module Instantiation
 
 Instantiate modules within other modules:
@@ -88,6 +90,8 @@ mod top {
     led = my_counter.overflow;
 }
 ```
+
+> TODO: Define the exact semantics of module-level assignments (for example, continuous assignment vs event-driven evaluation).
 
 ### Connection Syntax
 
@@ -126,12 +130,10 @@ Modules can contain other modules:
 mod system {
     in clk: bit,
 
-    // Sub-modules
-    cpu processor { clk: clk };
-    memory ram { clk: clk };
-
     // Connect them
-    processor.data_out -> ram.data_in;
+    let bus: u32;
+    cpu processor { clk: clk, data_out: bus };
+    memory ram { clk: clk, data_in: bus };
 }
 ```
 

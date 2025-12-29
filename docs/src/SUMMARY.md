@@ -2,6 +2,10 @@
 
 [Introduction](./introduction.md)
 
+# Project
+
+- [Progress](./progress.md)
+
 # Getting Started
 
 - [Installation](./getting-started/installation.md)

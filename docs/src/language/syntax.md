@@ -92,12 +92,22 @@ a || b   // logical OR
 !a       // logical NOT
 ```
 
+### Calls
+```ted
+print("Hello from Ted!");
+```
+
+> TODO: Function calls and string literals are prototype-level and will be specified alongside the core standard library.
+
 ### Time
+In timed contexts, `@` is available for history reads and scheduled writes.
+
 ```ted
 x @ -1        // history read (temporal values only, timed contexts)
-x = 1 @ +10ns // sugar for: @ +10ns; x = 1
-@ +10ns       // advance logical time in a timed context
+x = 1 @ +10ns // schedule a write 10ns later
 ```
+
+> TODO: Add a standalone delay statement (`@ +delta;`) for timed code that needs to advance time without assigning.
 
 ## Blocks
 

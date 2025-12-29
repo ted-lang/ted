@@ -19,7 +19,7 @@ mod blink {
     out led: bit,
 
     loop {
-        led = !led @ +500ms; // equivalent to: @ +500ms; led = !led;
+        led = !led @ +500ms; // schedule the next toggle 500ms later
     }
 }
 ```
@@ -31,6 +31,8 @@ This is timed code: the task advances logical time and yields between updates.
 - **Core Ted** is ordinary systems code (functions, structs, loops, FFI). It does not involve a scheduler and never uses `@`.
 - **Timed Ted** opts into explicit logical time. Timed contexts include `on` handlers and `loop` blocks inside modules today; future `timed fn` will let timed code appear anywhere.
 
+> TODO: Define `timed fn` tasks and where they can appear outside modules.
+
 ## Deterministic Concurrency
 
 Scheduling is defined over logical time, so concurrent programs are deterministic by default. This enables reproducible tests and is designed to support replayable debugging and systematic exploration of schedules.
@@ -40,17 +42,18 @@ Scheduling is defined over logical time, so concurrent programs are deterministi
 Each timed task has a current logical time `t`:
 
 ```ted
-// Advance time and yield
-@ +10ns;
+on change(sig) {
+    // Schedule a future update
+    sig = 1 @ +10ns;
 
-// Read the past (temporal values only)
-let prev = sig @ -1;
-
-// Schedule via sugar
-sig = 1 @ +10ns;         // equivalent to: @ +10ns; sig = 1;
+    // Read the past (temporal values only)
+    let prev = sig @ -1;
+}
 ```
 
 `@` is only legal in timed contexts. Ordinary values have no history; only temporal values support `x @ -delta`.
+
+> TODO: Add a standalone delay statement (`@ +delta;`) for timed code that needs to advance time without assigning.
 
 ## Temporal Storage
 
@@ -69,3 +72,4 @@ Hardware modeling is built on the timed core with libraries and conventions:
 - [Installation](./getting-started/installation.md) - Get Ted running on your machine
 - [Hello World](./getting-started/hello-world.md) - Write your first Ted program
 - [Time and `@`](./language/time-literals.md) - Deep dive into the timing model
+- [Progress](./progress.md) - Track implementation status and planned work

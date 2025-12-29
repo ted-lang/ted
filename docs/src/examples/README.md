@@ -10,10 +10,11 @@ The simplest Ted program:
 
 ```ted
 mod hello {
-    out value: u8,
-    value = 42;
+    print("Hello from Ted!");
 }
 ```
+
+> TODO: `print` is a prototype intrinsic and currently only accepts literal strings or integers.
 
 ### Blink
 
@@ -76,7 +77,7 @@ Generate a pulse of specific width:
 ```ted
 mod pulse_gen {
     in  trigger: bit,
-    in  width: u32,      // pulse width in ns
+    in  width: u32,      // pulse width in cycles
     out pulse: bit,
 
     on rising(trigger) {
@@ -104,7 +105,7 @@ mod debouncer {
 
     loop {
         if stable_count < THRESHOLD {
-            stable_count = stable_count + 1 @ +1ms;
+            stable_count = (stable_count + 1) @ +1ms;
         } else {
             clean = noisy;
         }
@@ -187,10 +188,13 @@ Check an example:
 ted check examples/counter.ted
 ```
 
-Compile an example:
+Compile the hello example (prototype backend):
 ```bash
-ted compile examples/counter.ted -o counter.tedbc
+ted compile examples/hello.ted --emit exe -o ./hello
+./hello
 ```
+
+> TODO: The prototype codegen only supports literal `print(...)` calls right now.
 
 Simulate (when implemented):
 ```bash

@@ -1,7 +1,5 @@
-// Hello World - The simplest Ted program
+// Hello - Print a message using the prototype standard library
 
 mod hello {
-    out value: u8,
-
-    value = 42;
+    print("Hello from Ted!");
 }

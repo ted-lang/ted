@@ -13,4 +13,5 @@ path = "src/main.rs"
 ted-parser.workspace = true
 ted-ir.workspace = true
 ted-diagnostics.workspace = true
+ted-codegen.workspace = true
 clap.workspace = true

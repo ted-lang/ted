@@ -8,13 +8,13 @@ Create a file called `hello.ted`:
 
 ```ted
 mod hello {
-    out message: u8,
-
-    message = 42;
+    print("Hello from Ted!");
 }
 ```
 
-This module outputs the constant value 42.
+This prints a message to the terminal.
+
+> TODO: `print` is a prototype intrinsic and currently only accepts literal strings or integers.
 
 ## Check the Program
 
@@ -27,6 +27,23 @@ If there are no errors, you'll see:
 ```
 No errors found.
 ```
+
+## Compile (Prototype)
+
+You can produce a native executable with the prototype Cranelift backend:
+
+```bash
+ted compile hello.ted --emit exe -o ./hello
+./hello
+```
+
+You should see:
+
+```
+Hello from Ted!
+```
+
+> TODO: Lower real program semantics into codegen; the current backend only supports literal `print(...)` calls.
 
 ## A Blinking LED
 
@@ -46,7 +63,7 @@ This demonstrates:
 - `out led: bit` - an output signal
 - `loop { ... }` - continuous execution
 - `!led` - toggle the current value
-- `@ +500ms` - advance logical time 500ms (sugar for `@ +500ms; led = !led`)
+- `@ +500ms` - schedule the change 500ms in the future
 
 ## A Counter
 
