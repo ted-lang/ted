@@ -5,7 +5,7 @@ use std::path::PathBuf;
 
 #[derive(Parser)]
 #[command(name = "ted")]
-#[command(about = "The Ted compiler - a timing-explicit language for hardware simulation")]
+#[command(about = "The Ted compiler - a systems language with explicit logical time")]
 #[command(version)]
 struct Cli {
     #[command(subcommand)]

@@ -2,15 +2,15 @@
 
 > **Note:** Ted is in a very early stage of design. The syntax and semantics described here are subject to change. We welcome feedback and contributions!
 
-**Ted** (Timing-Explicit Description) is a language for hardware simulation that makes time a first-class citizen.
+**Ted** (Timing-Explicit Description, aka The Teddy Bear Language) is a systems programming language with explicit logical time and deterministic concurrency. Hardware modeling is a first-class library built on the same semantics.
 
 ## Philosophy
 
 Ted is built on three core principles:
 
-1. **Time Travel** - The `@` operator lets you read the past and schedule the future naturally
-2. **Event-Driven** - React to signal changes without boilerplate
-3. **Rust-Like** - Familiar syntax for systems programmers
+1. **Time as an effect** - `@` and event waiting are only legal in timed contexts; ordinary code stays direct and fast
+2. **Deterministic concurrency** - Scheduling is defined in terms of logical time so runs are reproducible
+3. **Systems performance** - Core code compiles to tight machine code; timed code lowers to efficient state machines
 
 ## A Quick Taste
 
@@ -19,38 +19,53 @@ mod blink {
     out led: bit,
 
     loop {
-        led = !led @ +500ms;
+        led = !led @ +500ms; // equivalent to: @ +500ms; led = !led;
     }
 }
 ```
 
-Compare this to traditional HDL approaches that require explicit clock declarations, sensitivity lists, and verbose timing constructs.
+This is timed code: the task advances logical time and yields between updates.
+
+## Core vs Timed Ted
+
+- **Core Ted** is ordinary systems code (functions, structs, loops, FFI). It does not involve a scheduler and never uses `@`.
+- **Timed Ted** opts into explicit logical time. Timed contexts include `on` handlers and `loop` blocks inside modules today; future `timed fn` will let timed code appear anywhere.
+
+## Deterministic Concurrency
+
+Scheduling is defined over logical time, so concurrent programs are deterministic by default. This enables reproducible tests and is designed to support replayable debugging and systematic exploration of schedules.
 
 ## The `@` Operator
 
-Ted's signature feature is the time-travel operator `@`:
+Each timed task has a current logical time `t`:
 
 ```ted
-// Read the past
-let prev = x @ -1;       // x one cycle ago
+// Advance time and yield
+@ +10ns;
 
-// Schedule the future
-x = 1 @ +10ns;           // x becomes 1 in 10ns
+// Read the past (temporal values only)
+let prev = sig @ -1;
+
+// Schedule via sugar
+sig = 1 @ +10ns;         // equivalent to: @ +10ns; sig = 1;
 ```
 
-This simple syntax replaces Verilog's confusing `#` delays and provides capabilities (like reading past values) that traditional HDLs lack entirely.
+`@` is only legal in timed contexts. Ordinary values have no history; only temporal values support `x @ -delta`.
 
-## Why Ted?
+## Temporal Storage
 
-| Feature | Ted | Verilog |
-|---------|-----|---------|
-| Future assignment | `x = 1 @ +10ns` | `#10 x = 1` |
-| Past reference | `x @ -1` | Not possible |
-| Edge detection | `on rising(clk)` | `always @(posedge clk)` |
-| Module ports | `in x: bit` | `input x` |
+Not every value is time-travelable. Ports and module-level state are temporal, and future syntax will make temporal storage explicit (for example, a `signal` or `temporal` declaration). Temporal values keep bounded history so the compiler can allocate compact ring buffers and stay fast.
+
+## Hardware Is a Library
+
+Hardware modeling is built on the timed core with libraries and conventions:
+
+- `out led: bit` is sugar for a temporal output type
+- `on rising(clk)` is shorthand for subscribing to a rising-edge event stream
+- Waveform dumping is a runtime option, not a semantic requirement
 
 ## Next Steps
 
 - [Installation](./getting-started/installation.md) - Get Ted running on your machine
 - [Hello World](./getting-started/hello-world.md) - Write your first Ted program
-- [Time Literals](./language/time-literals.md) - Deep dive into the `@` operator
+- [Time and `@`](./language/time-literals.md) - Deep dive into the timing model

@@ -1,6 +1,6 @@
 # Example Programs
 
-This section contains complete Ted example programs.
+This section contains complete Ted example programs. These examples focus on the timed hardware modeling library and explicit time semantics.
 
 ## Basic Examples
 

@@ -1,25 +1,30 @@
 # Ted
 
-A timing-explicit language for hardware simulation.
+Ted (Timing-Explicit Description, aka The Teddy Bear Language) is a systems programming language with explicit logical time and deterministic concurrency. Hardware modeling is a first-class library built on the same semantics.
 
-Ted ("The Teddy Bear Language") makes time a first-class citizen with the `@` operator for intuitive time travel semantics.
+Timing stays an explicit effect: most code is ordinary and compiles to tight CPU code; timed code opts in to `@` and event sources when you need scheduling or simulation.
 
 ```ted
 mod blink {
     out led: bit,
 
     loop {
-        led = !led @ +500ms;  // toggle every 500ms
+        led = !led @ +500ms;  // equivalent to: @ +500ms; led = !led;
     }
 }
 ```
 
+## Language Model
+
+- **Core Ted** - ordinary functions, data structures, and loops with no scheduler overhead
+- **Timed Ted** - `@`, event handlers, and temporal values executed on a deterministic scheduler
+
 ## Features
 
-- **Time Travel** - Read past values with `x @ -1`, schedule future with `x = 1 @ +10ns`
-- **Event-Driven** - React to signal changes with `on rising(clk)` / `on change(sig)`
-- **Rust-Like** - Familiar syntax for systems programmers
-- **Deterministic** - Same input always produces identical output
+- **Explicit time** - `@ +delta` advances a task's logical time; `x @ -delta` reads history for temporal values
+- **Deterministic concurrency** - Same input, same schedule, designed for reproducible runs and replayable debugging
+- **Hardware as a library** - Ports, edge events, and waveforms are conventions built on the timed core
+- **Rust-like** - Familiar syntax for systems programmers
 
 ## Quick Start
 
@@ -42,7 +47,7 @@ Build and view the docs locally:
 mdbook serve docs/
 ```
 
-Or read online at [ted-lang.org](https://ted-lang.org) (coming soon).
+Or read online at [docs.ted-lang.org](https://docs.ted-lang.org).
 
 ## Project Structure
 

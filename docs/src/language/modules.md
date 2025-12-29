@@ -1,6 +1,6 @@
 # Modules
 
-Modules are the basic building blocks of Ted programs.
+Modules are the current top-level unit in Ted. Hardware modeling uses ports and event handlers, but core code can live inside modules without any timing.
 
 ## Module Declaration
 
@@ -14,7 +14,7 @@ mod module_name {
 
 ## Ports
 
-Ports define the module's interface:
+Ports define the module's interface for hardware modeling:
 
 ```ted
 mod example {
@@ -42,6 +42,8 @@ in byte_value: u8,
 in wide_bus: u64,
 ```
 
+Ports are convenience syntax for temporal values; they can be modeled as library types like `Signal<Bit, Out>`.
+
 ## Internal Signals
 
 Signals declared without direction are internal:
@@ -62,6 +64,10 @@ mod counter {
     }
 }
 ```
+
+## Timed Contexts
+
+`on` handlers and module-level `loop` blocks are timed contexts. `@` is only legal inside them; helper code outside remains ordinary core Ted.
 
 ## Module Instantiation
 

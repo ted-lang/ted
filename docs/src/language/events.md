@@ -1,6 +1,6 @@
 # Events
 
-Ted is event-driven. Code executes in response to signal changes, not continuous evaluation.
+Timed Ted is event-driven. Event handlers execute in response to event sources (signals are one common source).
 
 ## The `on` Keyword
 
@@ -12,7 +12,12 @@ on <event> {
 }
 ```
 
+`on` introduces a timed context, so `@` and event waits are legal inside the handler.
+Handlers run at the current logical time; use `@ +delta` to advance time when needed.
+
 ## Event Types
+
+The following adapters are part of the hardware modeling library:
 
 ### `rising` - Rising Edge
 
@@ -44,6 +49,8 @@ on change(data) {
     output = process(data);
 }
 ```
+
+Timed events are not limited to hardware signals. The standard library will add event sources like timeouts, intervals, and channels so the same model applies to software and simulations.
 
 ## Multiple Events
 
@@ -99,7 +106,7 @@ on rising(clk) if enable {
 | `on change(sig)` | `always @(sig)` |
 | `on change(a, b)` | `always @(a or b)` |
 
-Ted's syntax is more readable and less error-prone than Verilog's sensitivity lists.
+These are convenience adapters; the core semantics are event sources plus timed handlers.
 
 ## Best Practices
 

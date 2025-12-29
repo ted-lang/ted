@@ -1,6 +1,6 @@
 # Hello World
 
-Let's write your first Ted program.
+Let's write your first Ted program. These examples use the timed hardware modeling library; core code looks like normal systems code and does not use `@`.
 
 ## The Simplest Program
 
@@ -46,7 +46,7 @@ This demonstrates:
 - `out led: bit` - an output signal
 - `loop { ... }` - continuous execution
 - `!led` - toggle the current value
-- `@ +500ms` - schedule the change 500ms in the future
+- `@ +500ms` - advance logical time 500ms (sugar for `@ +500ms; led = !led`)
 
 ## A Counter
 
@@ -88,10 +88,10 @@ mod edge_detect {
 }
 ```
 
-The `@ -1` reads the signal's value from one cycle ago.
+The `@ -1` reads the signal's value from one cycle ago. This is only legal for temporal values like ports and module state.
 
 ## Next Steps
 
 - [Syntax Overview](../language/syntax.md) - Learn the full syntax
-- [Time Literals](../language/time-literals.md) - Master the `@` operator
+- [Time and `@`](../language/time-literals.md) - Master the timing model
 - [Examples](../examples/README.md) - More complete examples

@@ -4,7 +4,7 @@ Ted uses a Rust-like syntax that should feel familiar to systems programmers.
 
 ## Basic Structure
 
-A Ted program consists of modules:
+A Ted program consists of modules (the current top-level unit). Modules can host both core code and timed event handlers:
 
 ```ted
 mod my_module {
@@ -94,8 +94,9 @@ a || b   // logical OR
 
 ### Time
 ```ted
-x @ -1       // past reference
-x @ +10ns    // future scheduling
+x @ -1        // history read (temporal values only, timed contexts)
+x = 1 @ +10ns // sugar for: @ +10ns; x = 1
+@ +10ns       // advance logical time in a timed context
 ```
 
 ## Blocks

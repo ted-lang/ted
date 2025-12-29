@@ -10,7 +10,7 @@
 # Language Reference
 
 - [Syntax Overview](./language/syntax.md)
-- [Time Literals](./language/time-literals.md)
+- [Time and `@`](./language/time-literals.md)
 - [Events](./language/events.md)
 - [Modules](./language/modules.md)
 - [Types](./language/types.md)

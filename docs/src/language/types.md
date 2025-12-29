@@ -1,6 +1,15 @@
 # Types
 
-Ted has a simple, hardware-oriented type system.
+Ted has a simple, systems-oriented type system with explicit widths. Temporal storage is explicit by design and opt-in.
+
+## Temporal Storage
+
+Ted distinguishes ordinary values from temporal values. Only temporal values keep history and allow `x @ -delta`.
+
+- Ports and module-level state are temporal today
+- Future syntax will make temporal storage explicit (for example, `signal` or `temporal` declarations)
+
+Temporal values keep bounded history so the compiler can allocate compact ring buffers and avoid unbounded storage.
 
 ## Primitive Types
 

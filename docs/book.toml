@@ -2,7 +2,7 @@
 title = "The Ted Language"
 authors = ["Wuqiong Zhao"]
 language = "en"
-description = "A timing-explicit language for hardware simulation"
+description = "A systems programming language with explicit logical time and deterministic concurrency"
 
 [build]
 build-dir = "book"

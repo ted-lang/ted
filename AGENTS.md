@@ -1,6 +1,6 @@
 # AGENTS.md — Ted (Timing-Explicit Description) Build & Contributor Guide
 
-This repository contains **Ted** (“**The Teddy Bear Language**”), a **Rust-based compiler toolchain** for a **timing-explicit** language aimed at **hardware simulation** (cycle/event semantics, waveforms, determinism) while also being **high-performance on CPU** (fast simulation kernels, optional JIT/AOT paths, SIMD-friendly data layouts).
+This repository contains **Ted** (“**Timing-Explicit Description**”, aka “**The Teddy Bear Language**”), a **Rust-based compiler toolchain** for a systems language with **explicit logical time** and **deterministic concurrency**; hardware simulation is one library and set of conventions built on top of it. Ted is also **high-performance on CPU** (fast simulation kernels, optional JIT/AOT paths, SIMD-friendly data layouts).
 
 This file is written for:
 - automated coding agents (LLMs, CI bots) making changes safely and predictably
